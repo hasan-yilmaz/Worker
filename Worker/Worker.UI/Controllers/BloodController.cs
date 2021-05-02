@@ -40,6 +40,29 @@ namespace Worker.UI.Controllers
         }
 
 
-   
+        [HttpGet]
+        public ActionResult Insert(int id = 0)
+        {
+            BloodCRUDModel bloodCRUDModel = new BloodCRUDModel();
+
+            List<Blood> bloodList = bloodOperation.GetAllBlood();
+            bloodCRUDModel.BloodList = new SelectList(bloodList, "BloodId", "BloodGroup");
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Insert(BloodCRUDModel model)
+        {
+            Blood blood = new Blood()
+            {
+                BloodId = model.BloodId,
+                BloodGroup = model.BloodGroup,
+                IsActive = true
+            };
+            bloodOperation.Insert(blood);
+
+            return RedirectToAction("Index", "Blood");
+        }
     }
 }
