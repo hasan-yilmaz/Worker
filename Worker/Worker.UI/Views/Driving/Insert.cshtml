@@ -1,0 +1,28 @@
+﻿@model Worker.UI.Models.DrivingCRUDModel
+
+@{
+    ViewBag.Title = "Insert";
+}
+
+<h2>Ehliyet Ekleme Alanı</h2>
+
+@using (Html.BeginForm("Insert", "Driving", FormMethod.Post))
+{
+    <div class="form-group">
+
+        <div class="form-group">
+            @Html.TextBoxFor(s => s.DrivingGroup, new { @class = "form-control", required = "", placeholder = "Ehliyet Giriniz..." })
+        </div>
+
+        <input type="submit" class="btn btn-success" value="Ekle" id="driving" />
+
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+        <script>
+            $('#driving').click(function () { alert('Ehliyet Eklendi...'); });
+        </script>
+
+    </div>
+}
+

@@ -37,5 +37,30 @@ namespace Worker.UI.Controllers
             }
             return View(drivingListViewModelList);
         }
+
+        [HttpGet]
+        public ActionResult Insert()
+        {
+            DrivingCRUDModel drivingCRUDModel = new DrivingCRUDModel();
+
+            List<DrivingLiense> drivingLienseList = drivingLienseOperation.GetAllDrivingLiense();
+            drivingCRUDModel.DrivingList = new SelectList(drivingLienseList, "DrivingId", "DrivingGroup");
+
+            return View(drivingCRUDModel);
+        }
+
+        [HttpPost]
+        public ActionResult Insert(DrivingCRUDModel model)
+        {
+            DrivingLiense drivingLiense = new DrivingLiense()
+            {
+                DrivingId = model.DrivingId,
+                DrivingGroup = model.DrivingGroup,
+                IsActive = true
+            };
+            drivingLienseOperation.Insert(drivingLiense);
+
+            return RedirectToAction("Index", "Driving");
+        }
     }
 }
