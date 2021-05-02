@@ -62,5 +62,44 @@ namespace Worker.UI.Controllers
 
             return RedirectToAction("Index", "Driving");
         }
+
+        [HttpGet]
+        public ActionResult Update(int id = 0)
+        {
+            DrivingCRUDModel drivingCRUDModel = new DrivingCRUDModel();
+            DrivingLiense drivingLiense = drivingLienseOperation.GetById(id);
+            if(drivingLiense != null)
+            {
+                drivingCRUDModel.DrivingId = drivingLiense.DrivingId;
+                drivingCRUDModel.DrivingGroup = drivingLiense.DrivingGroup;
+
+                List<DrivingLiense> drivingList = drivingLienseOperation.GetAllDrivingLiense();
+                drivingCRUDModel.DrivingList = new SelectList(drivingList, "DrivingId", "DrivingGroup");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Driving");
+            }
+            return View(drivingCRUDModel);
+
+        }
+
+        [HttpPost]
+        public ActionResult Update(DrivingCRUDModel model)
+        {
+            DrivingLiense drivingLiense = drivingLienseOperation.GetById(model.DrivingId);
+            if(drivingLiense != null)
+            {
+                drivingLiense.DrivingId = model.DrivingId;
+                drivingLiense.DrivingGroup = model.DrivingGroup;
+
+                drivingLienseOperation.Update(drivingLiense);
+                
+            }
+
+            return RedirectToAction("Index", "Driving");
+        }
+
+
     }
 }

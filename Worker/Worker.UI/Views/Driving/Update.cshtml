@@ -1,0 +1,31 @@
+﻿@model Worker.UI.Models.DrivingCRUDModel
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Ehliyet Güncelleme Alanı</h2>
+
+@using (Html.BeginForm("Update", "Driving", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.HiddenFor(s=>s.DrivingId)
+
+        <div class="form-group">
+            @Html.TextBoxFor(s => s.DrivingGroup, new { @class = "form-control", required = ""})
+        </div>
+
+        <input type="submit" class="btn btn-success" value="Güncelle" id="driving" />
+
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+        <script>
+            $('#driving').click(function () { alert('Ehliyet Güncellendi...'); });
+        </script>
+
+    </div>
+}
+
+
