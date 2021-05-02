@@ -64,5 +64,43 @@ namespace Worker.UI.Controllers
 
             return RedirectToAction("Index", "Blood");
         }
+
+        [HttpGet]
+        public ActionResult Update(int id = 0)
+        {
+            Blood blood = bloodOperation.GetById(id);
+
+            BloodCRUDModel bloodCRUDModel = new BloodCRUDModel();
+
+            if (blood != null)
+            {
+                List<Blood> bloodList = bloodOperation.GetAllBlood();
+                bloodCRUDModel.BloodList = new SelectList(bloodList, "BloodId", "BloodGroup");
+
+                bloodCRUDModel.BloodId = blood.BloodId;
+                bloodCRUDModel.BloodGroup = blood.BloodGroup;
+            }
+            else
+            {
+                return RedirectToAction("Index", "Blood");
+            }
+            return View(bloodCRUDModel);
+        }
+
+        [HttpPost]
+        public ActionResult Update(BloodCRUDModel model)
+        {
+            Blood blood = bloodOperation.GetById(model.BloodId);
+
+            if (blood != null)
+            {
+                blood.BloodId = model.BloodId;
+                blood.BloodGroup = model.BloodGroup;
+
+                bloodOperation.Update(blood);
+            }
+
+            return RedirectToAction("Index","Blood");
+        }
     }
 }
