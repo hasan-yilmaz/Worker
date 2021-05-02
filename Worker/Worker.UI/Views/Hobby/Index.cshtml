@@ -1,0 +1,27 @@
+﻿@using Worker.UI.Models
+@model List<HobbyListViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Hobiler</h2>
+
+<a href="@Url.Action("Insert","Hobby")" class="btn btn-success">Hobi Ekle</a>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Hobiler</th>
+        <th>Güncelle</th>
+    </tr>
+
+    @foreach (HobbyListViewModel hobby in Model)
+    {
+        <tr>
+            <td>@hobby.Name</td>
+            <td><a href="@Url.Action("Update","Hobby",new { @id=hobby.HobbyId})" class="btn btn-primary">Güncelle</a></td>
+        </tr>
+    }
+</table>
+

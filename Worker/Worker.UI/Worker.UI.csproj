@@ -116,12 +116,14 @@
     <Content Include="Views\Driving\Index.cshtml" />
     <Content Include="Views\Driving\Insert.cshtml" />
     <Content Include="Views\Driving\Update.cshtml" />
+    <Content Include="Views\Hobby\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BloodController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\DrivingController.cs" />
+    <Compile Include="Controllers\HobbyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -132,6 +134,8 @@
     <Compile Include="Models\CityListViewModel.cs" />
     <Compile Include="Models\DrivingCRUDModel.cs" />
     <Compile Include="Models\DrivingListViewModel.cs" />
+    <Compile Include="Models\HobbyCRUDModel.cs" />
+    <Compile Include="Models\HobbyListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
