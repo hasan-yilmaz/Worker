@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBWorkerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Blood">
+          <Key>
+            <PropertyRef Name="BloodId" />
+          </Key>
+          <Property Name="BloodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BloodGroup" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DrivingLiense">
+          <Key>
+            <PropertyRef Name="DrivingId" />
+          </Key>
+          <Property Name="DrivingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrivingGroup" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hobby">
+          <Key>
+            <PropertyRef Name="HobbyId" />
+          </Key>
+          <Property Name="HobbyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HobbyName" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="WorkerId" />
+          </Key>
+          <Property Name="WorkerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="BloodId" Type="int" Nullable="false" />
+          <Property Name="DrivingId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelephoneCodeId" Type="int" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="30" />
+          <Property Name="HobbyId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TelephoneCode">
+          <Key>
+            <PropertyRef Name="TelephoneCodeId" />
+          </Key>
+          <Property Name="TelephoneCodeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TelCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Person__BloodId__4222D4EF">
+          <End Role="Blood" Type="Self.Blood" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blood">
+              <PropertyRef Name="BloodId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="BloodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__CityId__412EB0B6">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__DrivingI__4316F928">
+          <End Role="DrivingLiense" Type="Self.DrivingLiense" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrivingLiense">
+              <PropertyRef Name="DrivingId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="DrivingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__HobbyId__44FF419A">
+          <End Role="Hobby" Type="Self.Hobby" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hobby">
+              <PropertyRef Name="HobbyId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="HobbyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__Telephon__440B1D61">
+          <End Role="TelephoneCode" Type="Self.TelephoneCode" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TelephoneCode">
+              <PropertyRef Name="TelephoneCodeId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="TelephoneCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBWorkerModelStoreContainer">
+          <EntitySet Name="Blood" EntityType="Self.Blood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DrivingLiense" EntityType="Self.DrivingLiense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hobby" EntityType="Self.Hobby" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TelephoneCode" EntityType="Self.TelephoneCode" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Person__BloodId__4222D4EF" Association="Self.FK__Person__BloodId__4222D4EF">
+            <End Role="Blood" EntitySet="Blood" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__CityId__412EB0B6" Association="Self.FK__Person__CityId__412EB0B6">
+            <End Role="City" EntitySet="City" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__DrivingI__4316F928" Association="Self.FK__Person__DrivingI__4316F928">
+            <End Role="DrivingLiense" EntitySet="DrivingLiense" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__HobbyId__44FF419A" Association="Self.FK__Person__HobbyId__44FF419A">
+            <End Role="Hobby" EntitySet="Hobby" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__Telephon__440B1D61" Association="Self.FK__Person__Telephon__440B1D61">
+            <End Role="TelephoneCode" EntitySet="TelephoneCode" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBWorkerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Blood">
+          <Key>
+            <PropertyRef Name="BloodId" />
+          </Key>
+          <Property Name="BloodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Person__BloodId__4222D4EF" FromRole="Blood" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Person__CityId__412EB0B6" FromRole="City" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="DrivingLiense">
+          <Key>
+            <PropertyRef Name="DrivingId" />
+          </Key>
+          <Property Name="DrivingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrivingGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Person__DrivingI__4316F928" FromRole="DrivingLiense" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Hobby">
+          <Key>
+            <PropertyRef Name="HobbyId" />
+          </Key>
+          <Property Name="HobbyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HobbyName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Person__HobbyId__44FF419A" FromRole="Hobby" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="WorkerId" />
+          </Key>
+          <Property Name="WorkerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BloodId" Type="Int32" Nullable="false" />
+          <Property Name="DrivingId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneCodeId" Type="Int32" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="HobbyId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Blood" Relationship="Self.FK__Person__BloodId__4222D4EF" FromRole="Person" ToRole="Blood" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Person__CityId__412EB0B6" FromRole="Person" ToRole="City" />
+          <NavigationProperty Name="DrivingLiense" Relationship="Self.FK__Person__DrivingI__4316F928" FromRole="Person" ToRole="DrivingLiense" />
+          <NavigationProperty Name="Hobby" Relationship="Self.FK__Person__HobbyId__44FF419A" FromRole="Person" ToRole="Hobby" />
+          <NavigationProperty Name="TelephoneCode" Relationship="Self.FK__Person__Telephon__440B1D61" FromRole="Person" ToRole="TelephoneCode" />
+        </EntityType>
+        <EntityType Name="TelephoneCode">
+          <Key>
+            <PropertyRef Name="TelephoneCodeId" />
+          </Key>
+          <Property Name="TelephoneCodeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TelCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Person__Telephon__440B1D61" FromRole="TelephoneCode" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK__Person__BloodId__4222D4EF">
+          <End Role="Blood" Type="Self.Blood" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blood">
+              <PropertyRef Name="BloodId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="BloodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__CityId__412EB0B6">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__DrivingI__4316F928">
+          <End Role="DrivingLiense" Type="Self.DrivingLiense" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrivingLiense">
+              <PropertyRef Name="DrivingId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="DrivingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__HobbyId__44FF419A">
+          <End Role="Hobby" Type="Self.Hobby" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hobby">
+              <PropertyRef Name="HobbyId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="HobbyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__Telephon__440B1D61">
+          <End Role="TelephoneCode" Type="Self.TelephoneCode" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TelephoneCode">
+              <PropertyRef Name="TelephoneCodeId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="TelephoneCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBWorkerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blood" EntityType="Self.Blood" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="DrivingLiense" EntityType="Self.DrivingLiense" />
+          <EntitySet Name="Hobby" EntityType="Self.Hobby" />
+          <EntitySet Name="Person" EntityType="Self.Person" />
+          <EntitySet Name="TelephoneCode" EntityType="Self.TelephoneCode" />
+          <AssociationSet Name="FK__Person__BloodId__4222D4EF" Association="Self.FK__Person__BloodId__4222D4EF">
+            <End Role="Blood" EntitySet="Blood" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__CityId__412EB0B6" Association="Self.FK__Person__CityId__412EB0B6">
+            <End Role="City" EntitySet="City" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__DrivingI__4316F928" Association="Self.FK__Person__DrivingI__4316F928">
+            <End Role="DrivingLiense" EntitySet="DrivingLiense" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__HobbyId__44FF419A" Association="Self.FK__Person__HobbyId__44FF419A">
+            <End Role="Hobby" EntitySet="Hobby" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__Telephon__440B1D61" Association="Self.FK__Person__Telephon__440B1D61">
+            <End Role="TelephoneCode" EntitySet="TelephoneCode" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBWorkerModelStoreContainer" CdmEntityContainer="DBWorkerEntities">
+          <EntitySetMapping Name="Blood">
+            <EntityTypeMapping TypeName="DBWorkerModel.Blood">
+              <MappingFragment StoreEntitySet="Blood">
+                <ScalarProperty Name="BloodId" ColumnName="BloodId" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="DBWorkerModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DrivingLiense">
+            <EntityTypeMapping TypeName="DBWorkerModel.DrivingLiense">
+              <MappingFragment StoreEntitySet="DrivingLiense">
+                <ScalarProperty Name="DrivingId" ColumnName="DrivingId" />
+                <ScalarProperty Name="DrivingGroup" ColumnName="DrivingGroup" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hobby">
+            <EntityTypeMapping TypeName="DBWorkerModel.Hobby">
+              <MappingFragment StoreEntitySet="Hobby">
+                <ScalarProperty Name="HobbyId" ColumnName="HobbyId" />
+                <ScalarProperty Name="HobbyName" ColumnName="HobbyName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="DBWorkerModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="WorkerId" ColumnName="WorkerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BloodId" ColumnName="BloodId" />
+                <ScalarProperty Name="DrivingId" ColumnName="DrivingId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TelephoneCodeId" ColumnName="TelephoneCodeId" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="HobbyId" ColumnName="HobbyId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TelephoneCode">
+            <EntityTypeMapping TypeName="DBWorkerModel.TelephoneCode">
+              <MappingFragment StoreEntitySet="TelephoneCode">
+                <ScalarProperty Name="TelephoneCodeId" ColumnName="TelephoneCodeId" />
+                <ScalarProperty Name="TelCode" ColumnName="TelCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
