@@ -37,5 +37,31 @@ namespace Worker.UI.Controllers
             }
             return View(telephoneCodeListViewModelList);
         }
+
+        [HttpGet]
+        public ActionResult Insert()
+        {
+            TelephoneCodeCRUDModel telephoneCodeCRUDModel = new TelephoneCodeCRUDModel();
+
+            List<TelephoneCode> telephoneCodeList = telephoneCodeOperation.GetAllTelephoneCode();
+            telephoneCodeCRUDModel.TelList = new SelectList(telephoneCodeList, "TelephoneCodeId", "TelCode");
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Insert(TelephoneCodeCRUDModel model)
+        {
+            TelephoneCode telephoneCode = new TelephoneCode()
+            {
+                TelephoneCodeId = model.TelephoneCodeId,
+                TelCode = model.TelCode,
+                IsActive = true
+            };
+            telephoneCodeOperation.Insert(telephoneCode);
+
+            return RedirectToAction("Index", "TelephoneCode");
+        }
+
     }
 }
