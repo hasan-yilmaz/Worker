@@ -1,0 +1,27 @@
+﻿@using Worker.UI.Models
+@model List<DrivingListViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ehliyetler</h2>
+
+<a href="@Url.Action("Insert","Driving")" class="btn btn-success">Ehliyet Ekle</a>
+
+<table class="table table-bordered ">
+    
+    <tr>
+        <th>Ehliyet</th>
+        <th>Güncelle</th>
+    </tr>
+
+    @foreach (DrivingListViewModel driving in Model)
+    {
+        <tr>
+            <td>@driving.DrivingGroup</td>
+            <td><a href="@Url.Action("Update","Driving",new { @id=driving.DrivingId})" class="btn btn-primary">Güncelle</a></td>
+        </tr>
+    }
+
+</table>
