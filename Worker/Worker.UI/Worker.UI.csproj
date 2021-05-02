@@ -111,6 +111,7 @@
     <Content Include="Views\Blood\Insert.cshtml" />
     <Content Include="Views\Blood\Update.cshtml" />
     <Content Include="Views\City\Index.cshtml" />
+    <Content Include="Views\City\Insert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

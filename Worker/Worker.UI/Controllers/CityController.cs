@@ -37,5 +37,30 @@ namespace Worker.UI.Controllers
             }
             return View(cityListViewModelList);
         }
+
+        [HttpGet]
+        public ActionResult Insert(int id = 0)
+        {
+            CityCRUDModel cityCRUDModel = new CityCRUDModel();
+
+            List<City> cityList = cityOperation.GetAllCity();
+            cityCRUDModel.CityList = new SelectList(cityList, "CityId", "CityName");
+
+            return View(cityCRUDModel);
+        }
+
+        [HttpPost]
+        public ActionResult Insert(CityCRUDModel model)
+        {
+            City city = new City()
+            {
+                CityId = model.CityId,
+                CityName =model.CityName,
+                IsActive = true
+            };
+            cityOperation.Insert(city);
+
+            return RedirectToAction("Index", "City");
+        }
     }
 }
