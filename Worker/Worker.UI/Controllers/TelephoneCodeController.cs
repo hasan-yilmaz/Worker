@@ -63,5 +63,43 @@ namespace Worker.UI.Controllers
             return RedirectToAction("Index", "TelephoneCode");
         }
 
+        [HttpGet]
+        public ActionResult Update(int id = 0)
+        {
+            TelephoneCodeCRUDModel telephoneCodeCRUDModel = new TelephoneCodeCRUDModel();
+
+            TelephoneCode telephoneCode = telephoneCodeOperation.GetById(id);
+
+            if (telephoneCode != null)
+            {
+                List<TelephoneCode> telephoneCodeList = telephoneCodeOperation.GetAllTelephoneCode();
+                telephoneCodeCRUDModel.TelList = new SelectList(telephoneCodeList, "TelephoneCodeId", "TelCode");
+
+                telephoneCodeCRUDModel.TelephoneCodeId = telephoneCode.TelephoneCodeId;
+                telephoneCodeCRUDModel.TelCode = telephoneCode.TelCode;
+            }
+            else
+            {
+                return RedirectToAction("Index", "TelephoneCode");
+            }
+            return View(telephoneCodeCRUDModel);
+
+        }
+
+        [HttpPost]
+        public ActionResult Update(TelephoneCodeCRUDModel model)
+        {
+            TelephoneCode telephoneCode = telephoneCodeOperation.GetById(model.TelephoneCodeId);
+
+            if (telephoneCode != null)
+            {
+                telephoneCode.TelephoneCodeId = model.TelephoneCodeId;
+                telephoneCode.TelCode = model.TelCode;
+
+                telephoneCodeOperation.Update(telephoneCode);
+            }
+            
+            return RedirectToAction("Index","TelephoneCode");
+        }
     }
 }

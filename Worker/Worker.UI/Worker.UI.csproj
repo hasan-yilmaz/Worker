@@ -121,6 +121,7 @@
     <Content Include="Views\Hobby\Update.cshtml" />
     <Content Include="Views\TelephoneCode\Index.cshtml" />
     <Content Include="Views\TelephoneCode\Insert.cshtml" />
+    <Content Include="Views\TelephoneCode\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
