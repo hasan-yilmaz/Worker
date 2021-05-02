@@ -1,0 +1,25 @@
+﻿@using Worker.UI.Models
+@model List<BloodListViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Kan Grubu</h2>
+
+<a href="@Url.Action("Insert","Blood")" class="btn btn-success">Kan Grubu Ekle</a>
+
+<table class="table table-bordered" >
+    <tr>
+        <th>Kan Grubu</th>
+        <th>Güncelle</th>
+    </tr>
+
+    @foreach (BloodListViewModel blood in Model)
+    {
+        <tr>
+            <td>@blood.BloodName</td>
+            <td><a href="@Url.Action("Update","Blood",new { @id=blood.BloodId})" class="btn btn-primary">Güncelle</a></td>
+        </tr>
+    }
+</table>
+
