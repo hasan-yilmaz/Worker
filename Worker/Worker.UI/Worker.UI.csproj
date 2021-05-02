@@ -110,16 +110,20 @@
     <Content Include="Web.config" />
     <Content Include="Views\Blood\Insert.cshtml" />
     <Content Include="Views\Blood\Update.cshtml" />
+    <Content Include="Views\City\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BloodController.cs" />
+    <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BloodCRUDModel.cs" />
     <Compile Include="Models\BloodListViewModel.cs" />
+    <Compile Include="Models\CityCRUDModel.cs" />
+    <Compile Include="Models\CityListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

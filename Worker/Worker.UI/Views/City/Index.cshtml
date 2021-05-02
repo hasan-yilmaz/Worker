@@ -1,0 +1,26 @@
+﻿@using Worker.UI.Models
+@model List<CityListViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Şehirler</h2>
+
+<a href="@Url.Action("Insert","City")" class="btn btn-success">Şehir Ekle</a>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Şehir Adı</th>
+        <th>Güncelle</th>
+    </tr>
+
+    @foreach (CityListViewModel city in Model)
+    {
+        <tr>
+            <td>@city.CityName</td>
+            <td><a href="@Url.Action("Update","City",new { @id=city.CityId})" class="btn btn-primary">Güncelle</a></td>
+        </tr>
+    }
+</table>
+
