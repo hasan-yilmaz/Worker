@@ -119,6 +119,7 @@
     <Content Include="Views\Hobby\Index.cshtml" />
     <Content Include="Views\Hobby\Insert.cshtml" />
     <Content Include="Views\Hobby\Update.cshtml" />
+    <Content Include="Views\TelephoneCode\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Controllers\DrivingController.cs" />
     <Compile Include="Controllers\HobbyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TelephoneCodeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +140,8 @@
     <Compile Include="Models\DrivingListViewModel.cs" />
     <Compile Include="Models\HobbyCRUDModel.cs" />
     <Compile Include="Models\HobbyListViewModel.cs" />
+    <Compile Include="Models\TelephoneCodeCRUDModel.cs" />
+    <Compile Include="Models\TelephoneCodeListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,29 @@
+﻿@using Worker.UI.Models
+@model List<TelephoneCodeListViewModel>
+
+@{
+    ViewBag.Title = "Telefon - Telefon Kod Index";
+}
+
+<h2>Telefon Kod Ekleme </h2>
+
+<a href="@Url.Action("Insert","TelephoneCode")" class="btn btn-success">Yeni Telefon Kodu Ekle</a>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+
+    <tr>
+        <th>Telefon Kodu</th>
+        <th>Güncelle</th>
+    </tr>
+
+
+    @foreach (TelephoneCodeListViewModel tel in Model)
+    {
+        <tr>
+            <td>@tel.TelCode</td>
+            <td><a href="@Url.Action("Update","TelephoneCode",new {@id=tel.TelephoneCodeId })" class="btn btn-success">Güncelle</a></td>
+        </tr>
+
+    }
+
+</table>
