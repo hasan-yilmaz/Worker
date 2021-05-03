@@ -58,6 +58,51 @@ namespace Worker.UI.Controllers
             return View(personListViewModelList);
         }
 
+        [HttpGet]
+        public ActionResult Insert()
+        {
+            PersonCRUDModel personCRUDModel = new PersonCRUDModel();
+
+            List<Blood> bloodList = bloodOperation.GetAllBlood();
+            personCRUDModel.BloodList = new SelectList(bloodList, "BloodId", "BloodGroup");
+
+            List<City> cityList = cityOperation.GetAllCity();
+            personCRUDModel.CityList = new SelectList(cityList, "CityId", "CityName");
+
+            List<DrivingLiense> drivingList = drivingLienseOperation.GetAllDrivingLiense();
+            personCRUDModel.DrivingList = new SelectList(drivingList, "DrivingId", "DrivingGroup");
+
+            List<TelephoneCode> telephoneList = telephoneCodeOperation.GetAllTelephoneCode();
+            personCRUDModel.TelList = new SelectList(telephoneList, "TelephoneCodeId", "TelCode");
+
+            List<Hobby> hobbyList = hobbyOperation.GetAllHobby();
+            personCRUDModel.HobbyList = new SelectList(hobbyList, "HobbyId", "HobbyName");
+
+            return View(personCRUDModel);
+        }
+
+        [HttpPost]
+        public ActionResult Insert(PersonCRUDModel model)
+        {
+            Person person = new Person()
+            {
+                Name = model.Name,
+                Surname = model.Surname,
+                CityId = model.CityId,
+                Address = model.Address,
+                BloodId = model.BloodId,
+                DrivingId = model.DrivingId,
+                Email = model.Email,
+                TelephoneCodeId = model.TelephoneCodeId,
+                Telephone = model.Telephone,
+                HobbyId = model.HobbyId,
+                IsActive = true
+            };
+            personOperation.Insert(person);
+
+            return RedirectToAction("Index","Home");
+        }
+        
 
     }
 }
