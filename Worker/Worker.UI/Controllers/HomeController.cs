@@ -103,6 +103,70 @@ namespace Worker.UI.Controllers
             return RedirectToAction("Index","Home");
         }
         
+        [HttpGet]
+        public ActionResult Update(int id = 0)
+        {
+            PersonCRUDModel personCRUDModel = new PersonCRUDModel();
+            Person person = personOperation.GetById(id);
 
+            if (person != null)
+            {
+                List<Blood> bloodList = bloodOperation.GetAllBlood();
+                personCRUDModel.BloodList = new SelectList(bloodList, "BloodId", "BloodGroup");
+
+                List<City> cityList = cityOperation.GetAllCity();
+                personCRUDModel.CityList = new SelectList(cityList, "CityId", "CityName");
+
+                List<DrivingLiense> drivingList = drivingLienseOperation.GetAllDrivingLiense();
+                personCRUDModel.DrivingList = new SelectList(drivingList, "DrivingId", "DrivingGroup");
+
+                List<TelephoneCode> telephoneList = telephoneCodeOperation.GetAllTelephoneCode();
+                personCRUDModel.TelList = new SelectList(telephoneList, "TelephoneCodeId", "TelCode");
+
+                List<Hobby> hobbyList = hobbyOperation.GetAllHobby();
+                personCRUDModel.HobbyList = new SelectList(hobbyList, "HobbyId", "HobbyName");
+
+                personCRUDModel.WorkerId = person.WorkerId;
+                personCRUDModel.Name = person.Name;
+                personCRUDModel.Surname = person.Surname;
+                personCRUDModel.CityId = person.CityId;
+                personCRUDModel.Address = person.Address;
+                personCRUDModel.BloodId = person.BloodId;
+                personCRUDModel.DrivingId = person.DrivingId;
+                personCRUDModel.Email = person.Email;
+                personCRUDModel.TelephoneCodeId = person.TelephoneCodeId;
+                personCRUDModel.Telephone = person.Telephone;
+                personCRUDModel.HobbyId = person.HobbyId;
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View(personCRUDModel);
+        }
+
+        [HttpPost]
+        public ActionResult Update(PersonCRUDModel model)
+        {
+            Person person = personOperation.GetById(model.WorkerId);
+
+            if (person != null)
+            {
+                person.Name = model.Name;
+                person.Surname = model.Surname;
+                person.CityId = model.CityId;
+                person.Address = model.Address;
+                person.BloodId = model.BloodId;
+                person.DrivingId = model.DrivingId;
+                person.Email = model.Email;
+                person.TelephoneCodeId = model.TelephoneCodeId;
+                person.Telephone = model.Telephone;
+                person.HobbyId = model.HobbyId;
+
+                personOperation.Update(person);
+            }
+
+            return RedirectToAction("Index","Home");
+        }
     }
 }
