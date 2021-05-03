@@ -1,0 +1,52 @@
+﻿@using Worker.UI.Models
+@model List<PersonListViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<a href="@Url.Action("Index","Blood")" class="btn navbar-btn">Kan Grupları</a>
+<a href="@Url.Action("Index","City")" class="btn navbar-btn">Şehirler</a>
+<a href="@Url.Action("Index","Driving")" class="btn navbar-btn">Ehliyetler</a>
+<a href="@Url.Action("Index","Hobby")" class="btn navbar-btn">Hobi Alanı</a>
+<a href="@Url.Action("Index","TelephoneCode")" class="btn navbar-btn">Telefon Kodları</a>
+
+<h2>Çalışanlar</h2>
+
+<a href="@Url.Action("Insert","Home")" class="btn btn-success">Kişi Ekle</a>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>İl</th>
+        <th>Adres</th>
+        <th>Kan Grubu</th>
+        <th>Ehliyet</th>
+        <th>Email</th>
+        <th>Telefon Kodu</th>
+        <th>Telefon </th>
+        <th>Hobiler</th>
+        <th>Güncelle</th>
+    </tr>
+
+
+    @foreach (PersonListViewModel person in Model)
+    {
+        <tr>
+            <td>@person.Name</td>
+            <td>@person.Surname</td>
+            <td>@person.City</td>
+            <td>@person.Address</td>
+            <td>@person.Blood</td>
+            <td>@person.Driving</td>
+            <td>@person.Email</td>
+            <td>@person.TelephoneCode</td>
+            <td>@person.Telephone</td>
+            <td>@person.Hobby</td>
+            <td><a href="@Url.Action("Update","Home",new {@id=person.WorkerId })" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+
